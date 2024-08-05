@@ -1,0 +1,6 @@
+[tools]
+node = "20"
+ruby = "3.1.4"
+python = "3.12.4"
+go = "1.22"
+erlang = "27.0.1"

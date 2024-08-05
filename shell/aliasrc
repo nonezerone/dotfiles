@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# Replace vim with neovim if possible
+[ -x "$(command -v nvim)" ] && alias vim="nvim"
+
+# Verbosity and sane(?) defaults
+alias \
+    cp="cp -iv" \
+    mv="mv -iv" \
+    bc="bc -ql" \
+    mkd="mkdir -pv" \
+    man="gman"
+
+# Add colors to everything
+alias \
+    grep="ggrep --color=auto" \
+    diff="diff --color=auto" \
+    ccat="highlight --out-format=ansi" \
+    ls="gls -hN --color=auto --group-directories-first" \
+    la="gls -la -hN --color=auto --group-directories-first"
+
+# Shorten some commands
+alias \
+    ka="killall" \
+    g="git" \
+    gs="git status" \
+    gp="git pull" \
+    graph="git log --oneline --graph --all" \
+    t="tmux" \
+    e="$EDITOR" \
+    v="$EDITOR" \
+    be="bundle exec" \
+    c="clear"

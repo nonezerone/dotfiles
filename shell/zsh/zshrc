@@ -1,0 +1,57 @@
+#!/usr/bin/env zsh
+
+# Enable Brew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Mise activation
+eval "$(~/.local/bin/mise activate zsh)"
+
+# Starship Prompt
+eval "$(starship init zsh)"
+
+# Automatically cd into typed directory
+setopt autocd
+
+# History in cache directory
+export HISTFILE="${XDG_CACHE_DIR}/zsh/history"
+export HISTSIZE=25000
+export SAVEHIST=25000
+export HISTCONTROL=ignorespace
+
+# Load aliases if exist
+[ -f "${XDG_CONFIG_HOME}/shell/aliasrc" ] && source "${XDG_CONFIG_HOME}/shell/aliasrc"
+
+# get rid of mail notifications on MacOS
+unset MAILCHECK
+
+# Basic auto/tab complete
+autoload -U compinit
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$XDG_CACHE_DIR/zsh/.zcompcache"
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit -d "$XDG_CACHE_DIR/zsh/.zcompdump-$HOST"
+# Include hidden files
+_comp_options+=(globdots)
+
+# vi mode
+bindkey -v
+export KEYTIMEOUT=1
+
+# Use vim keys in tab complete menu
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -v '^?' backward-delete-char
+
+# Edit line in vim with ctrl-e
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
+
+# Load syntax highlighting
+source "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "${HOMEBREW_PREFIX}/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+
+# Execute autosuggestion
+bindkey '^y' autosuggest-execute

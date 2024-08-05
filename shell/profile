@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Profile file. Runs on login. Environmental variables are set here.
+
+# When using bash
+# [ -r ~/.bashrc ] && source ~/.bashrc
+
+# Add utils to path
+PATH="${PATH:+${PATH}:}"$HOME"/.local/bin"
+PATH="${PATH:+${PATH}:}"$HOMEBREW_PREFIX"/opt/coreutils/libexec/gnubin"
+PATH="${PATH:+${PATH}:}"$HOMEBREW_PREFIX"/opt/grep/libexec/gnubin"
+PATH="${PATH:+${PATH}:}"$HOMEBREW_PREFIX"/opt/man-db/libexec/bin"
+
+# ~/ Clean-up
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_DIR="$HOME/.cache"
+
+# Default programs
+export VISUAL="nvim"
+export EDITOR="nvim"
+export BROWSER="firefox"
+
+# MacOS specific rails console problem
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
+# Other program settings
+export HOMEBREW_NO_AUTO_UPDATE=1
+export BASH_SILENCE_DEPRECATION_WARNING=1
