@@ -4,6 +4,3 @@ ruby = "3.1.4"
 python = "3.11.9"
 go = "1.22"
 erlang = "27.0.1"
-
-[env]
-_.python.venv = { path = ".venv", create = true }
