@@ -13,17 +13,6 @@ fi
 selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
 
-launch_dev_session () {
-    if [[ "$1" == "kst" ]]; then
-        tmux send-keys -t "$1" "make kstserver" Enter
-        tmux split-pane -h -t "$1" -c $2
-        tmux send-keys -t "$1" "make c" Enter
-        tmux split-pane -v -t "$1" -c $2
-    else
-        return
-    fi
-}
-
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
     tmux new-session -s $selected_name -c $selected
     exit 0
