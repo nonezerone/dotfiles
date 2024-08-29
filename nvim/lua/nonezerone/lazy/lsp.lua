@@ -45,6 +45,16 @@ return {
                     },
                 },
             },
+            emmet_ls = {
+                settings = {
+                    filetypes = {
+                        "css",
+                        "eruby",
+                        "html",
+                        "javascript",
+                    },
+                },
+            },
             ruby_lsp = {
                 settings = {
                     init_options = {
