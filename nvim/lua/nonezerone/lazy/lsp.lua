@@ -62,7 +62,7 @@ return {
                     },
                 },
             },
-            tsserver = {},
+            ts_ls = {},
             gopls = {},
             pylsp = {},
         }
