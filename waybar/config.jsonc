@@ -1,0 +1,180 @@
+{
+    "position": "top",
+    "layer": "top",
+    "height": 30,
+    "margin-top": 6,
+    "margin-left": 10,
+    "margin-right": 10,
+    "spacing": 5,
+
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/submap",
+        "wlr/taskbar"
+],
+
+    "modules-center": [
+        "clock",
+        "custom/weather"
+    ],
+
+    "modules-right": [
+        "hyprland/language",
+        "pulseaudio",
+        "network",
+        "cpu",
+        "memory",
+        "temperature",
+        "battery",
+        "tray",
+        "custom/power"
+    ],
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "󰋜",
+            "2": "",
+            "3": "",
+            "4": "󰙯",
+            "5": "󰎄",
+            "6": "󰎆",
+            "7": "󰎇",
+            "8": "󰎉",
+            "9": "󰎋",
+            "10": "󰎍",
+            "urgent": "󰗖",
+            "focused": "󰗖",
+            "default": "󰋔"
+        }
+    },
+
+    "hyprland/submap": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "󰅶",
+            "deactivated": "󰾪"
+        },
+        "tooltip": true,
+        "tooltip-format-activated": "Idle Inhibitor Active",
+        "tooltip-format-deactivated": "Idle Inhibitor Inactive"
+    },
+
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10
+    },
+
+    "clock": {
+        "timezone": "Asia/Tbilisi",
+        "format": "{:%H:%M}",
+        "format-alt": "{:%Y-%m-%d | %H:%M}",
+        "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>",
+        "calendar": {
+            "mode": "month",
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "format": {
+                "months": "<span color='#268bd2'>{}</span>",
+                "days": "<span color='#93a1a1'>{}</span>",
+                "weeks": "<span color='#cb4b16'>{}</span>",
+                "weekdays": "<span color='#2aa198'>{}</span>",
+                "today": "<span color='#d33682'><b>{}</b></span>"
+            }
+        },
+        "actions": {
+            "on-click": "mode",
+            "on-click-right": "tz_list"
+        }
+    },
+
+    "cpu": {
+        "format": "󰍛 {usage}%",
+        "tooltip": true,
+        "interval": 2
+    },
+
+    "memory": {
+        "format": "󰘚 {percentage}%",
+        "tooltip": true,
+        "tooltip-format": "RAM: {used:0.1f}GiB/{total:0.1f}GiB",
+        "interval": 3
+    },
+
+    "temperature": {
+        "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+        "critical-threshold": 80,
+        "format": "{icon} {temperatureC}°C",
+        "format-icons": ["󰔏", "󰔐", "󱃂"],
+        "tooltip": true
+    },
+
+    "backlight": {
+        "format": "{icon} {percent}%",
+        "format-icons": ["󰃞", "󰃟", "󰃠"],
+        "on-scroll-up": "light -A 5",
+        "on-scroll-down": "light -U 5"
+    },
+
+    "battery": {
+        "states": {
+            "good": 80,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰚥 {capacity}%",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+
+    "network": {
+        "format-wifi": "󰤨 {essid}",
+        "format-ethernet": "󰈀 {ipaddr}/{cidr}",
+        "format-disconnected": "󰤮 Disconnected",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}\n󰤨 {essid} ({signalStrength}%)\n󱘖 {bandwidthUpBits}\n󱘒 {bandwidthDownBits}",
+        "on-click": "nm-connection-editor"
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟 Muted",
+        "format-icons": {
+            "headphone": "󰋋",
+            "hands-free": "󰋎",
+            "headset": "󰋎",
+            "phone": "󰏲",
+            "portable": "󰄝",
+            "car": "󰄋",
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "on-click": "pavucontrol",
+        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%"
+    },
+
+    "hyprland/language": {
+        "format": "{}",
+        "format-en": "us",
+        "format-ru": "ru"
+    },
+
+    "custom/power": {
+        "format": "󰐥",
+        "on-click": "wlogout",
+        "tooltip": false
+    },
+
+    "custom/weather": {
+        "format": "{}",
+        "exec": "exec ~/.local/bin/weather",
+        "interval": 1800
+    }
+}

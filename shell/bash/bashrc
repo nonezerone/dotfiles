@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# Enable Brew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Mise activation
+eval "$(~/.local/bin/mise activate bash)"
+
+# Starship Prompt
+eval "$(starship init bash)"
+
+# History in cache directory
+export HISTFILE="${HOME}/.cache/bash/history"
+export HISTSIZE=25000
+export SAVEHIST=25000
+export HISTCONTROL=ignorespace
+
+# ~/ Clean-up
+export XDG_CONFIG_HOME="$HOME/.config"
+
+# Load aliases if existent
+[ -f "${XDG_CONFIG_HOME}/shell/aliasrc" ] && source "${XDG_CONFIG_HOME}/shell/aliasrc"
+
+# Set to superior editing mode
+set -o vi
+bind -x '"\C-l":clear -x'
+
+# get rid of mail notifications on MacOS
+unset MAILCHECK
