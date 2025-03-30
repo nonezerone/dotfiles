@@ -1,236 +1,98 @@
-@define-color foreground #c5d1c7;
-@define-color background #0F0E17;
-@define-color cursor #c5d1c7;
-
-@define-color color0 #0F0E17;
-@define-color color1 #D3A955;
-@define-color color2 #2570AB;
-@define-color color3 #6A9FAB;
-@define-color color4 #0B8FEA;
-@define-color color5 #309FEB;
-@define-color color6 #58B0E6;
-@define-color color7 #c5d1c7;
-@define-color color8 #89928b;
-@define-color color9 #D3A955;
-@define-color color10 #2570AB;
-@define-color color11 #6A9FAB;
-@define-color color12 #0B8FEA;
-@define-color color13 #309FEB;
-@define-color color14 #58B0E6;
-@define-color color15 #c5d1c7;
-
-
 * {
-    border: none;
-    border-radius: 0;
-    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free";
-    font-size: 14px;
-    min-height: 0;
-    transition-property: background-color;
-    transition-duration: 0.2s;
+    /* `otf-font-awesome` and SpaceMono Nerd Font are required to be installed for icons */
+    /* font-family: "Fira Sans Semibold", FontAwesome, Roboto, Helvetica, Arial, sans-serif; */
+    font-family: "ComicCode Ligatures Regular", ComicCode, FontAwesome, Roboto, Helvetica, sans-serif;
+    font-size: 15px;
+    transition: background-color .3s ease-out;
 }
 
 window#waybar {
-    background-color: rgba(0, 43, 54, 0.0);  /* Transparent background */
-    color: @color4;
+    background: rgba(13, 12, 12, 1);
+    color: #c5c9c5;
+    font-family:
+        ComicCode,
+        feather;
+    transition: background-color .5s;
 }
 
-tooltip {
-    background-color: @color0;
-    border: 2px solid @color13;
-    border-radius: 8px;
+.modules-left,
+.modules-center,
+.modules-right
+{
+    background: rgba(24, 22, 22, 1);
+    margin: 5px 10px;
+    padding: 0 5px;
+    border-radius: 15px;
+}
+.modules-left {
+    padding: 0;
+}
+.modules-center {
+    padding: 0 10px;
 }
 
-tooltip label {
-    color: @color5;
-}
-
-/* Floating module style - common properties */
-#workspaces button,
-#mode,
 #clock,
-#cpu,
-#custom-scripts,
-#memory,
-#temperature,
 #battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
 #network,
 #pulseaudio,
-#tray,
+#wireplumber,
 #custom-media,
-#custom-power,
-#custom-weather,
+#tray,
+#mode,
 #idle_inhibitor,
-#language,
-#backlight,
-#window,
-#disk {
-    margin: 5px 2px;
-    padding: 0 12px;
-    border-radius: 10px;
-    background-color: @color1;
-    color: @color5;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+#scratchpad,
+#power-profiles-daemon,
+#language {
+    padding: 0 10px;
+    border-radius: 15px;
 }
 
-/* Workspaces module */
+#clock:hover,
+#battery:hover,
+#cpu:hover,
+#memory:hover,
+#disk:hover,
+#temperature:hover,
+#backlight:hover,
+#network:hover,
+#pulseaudio:hover,
+#wireplumber:hover,
+#custom-media:hover,
+#tray:hover,
+#mode:hover,
+#idle_inhibitor:hover,
+#scratchpad:hover,
+#power-profiles-daemon:hover,
+#language:hover {
+    background: #c5c9c5;
+    color: #0d0c0c;
+}
+
+
 #workspaces button {
-    padding: 0 6px;
-    background-color: @color1;
-    color: @color4;
-    min-width: 30px;
-}
-
-#workspaces button:hover {
-    background-color: @color2;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+  background: transparent;
+  font-family:
+    ComicCode,
+    feather;
+  font-weight: 900;
+  font-size: 13pt;
+  color: #c5c9c5;
+  border:none;
+  border-radius: 15px;
 }
 
 #workspaces button.active {
-    background-color: @color13;
-    color: @color0;
-    box-shadow: inset 0 0 0 2px @color6;
-    text-shadow: 0 0 5px @color7;
+    background: #e6c384;
+    color: #0d0c0c;
 }
 
-#workspaces button.urgent {
-    background-color: @color10;
-    color: @color7;
-}
-
-/* Clock module, Scripts module and window title */
-#clock, #custom-scripts, #custom-weather, #window {
-    background-color: @color14;
-    color: @color0;
-    font-weight: bold;
-}
-
-/* System modules */
-#cpu {
-    background-color: @color15;
-    color: @color0;
-}
-
-#memory {
-    background-color: @color8;
-    color: @color0;
-}
-
-#temperature {
-    background-color: @color9;
-    color: @color0;
-}
-
-#temperature.critical {
-    background-color: @color10;
-    color: @color7;
-    animation: blink 1s infinite alternate;
-}
-
-/* Battery module */
-#battery {
-    background-color: @color12;
-    color: @color0;
-}
-
-#battery.charging {
-    background-color: @color15;
-    color: @color0;
-}
-
-#battery.warning:not(.charging) {
-    background-color: @color8;
-    color: @color0;
-}
-
-#battery.critical:not(.charging) {
-    background-color: @color10;
-    color: @color7;
-    animation: blink 1s infinite alternate;
-}
-
-/* Network module */
-#network {
-    background-color: @color13;
-    color: @color0;
-}
-
-#network.disconnected {
-    background-color: @color10;
-    color: @color7;
-}
-
-/* Media modules */
-#pulseaudio {
-    background-color: @color11;
-    color: @color0;
-}
-
-#pulseaudio.muted {
-    background-color: @color2;
-    color: @color5;
-}
-
-#backlight {
-    background-color: @color8;
-    color: @color0;
-}
-
-/* Language module */
-#language {
-    background-color: @color9;
-    color: @color0;
-    min-width: 40px;
-}
-
-/* Custom modules */
-#custom-media {
-    background-color: @color12;
-    color: @color0;
-    min-width: 100px;
-}
-
-#custom-power {
-    background-color: @color10;
-    color: @color7;
-    margin-right: 6px;
-}
-
-/* System tray */
-#tray {
-    background-color: @color1;
-}
-
-#tray > .passive {
-    -gtk-icon-effect: dim;
-}
-
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: @color10;
-}
-
-/* Disk usage */
-#disk {
-    background-color: @color15;
-    color: @color0;
-}
-
-/* Animation for critical indicators */
-@keyframes blink {
-    to {
-        background-color: @color7;
-        color: @color10;
-    }
-}
-
-/* Idle inhibitor module */
-#idle_inhibitor {
-    background-color: @color2;
-    color: @color5;
-}
-
-#idle_inhibitor.activated {
-    background-color: @color8;
-    color: @color0;
+#workspaces button:hover {
+  background: #c5c9c5;
+  color: #0d0c0c;
+  box-shadow: none;
 }
