@@ -17,6 +17,25 @@ return {
     },
 
     config = function()
+        vim.api.nvim_create_autocmd("LspAttach", {
+             group = vim.api.nvim_create_augroup("LspAttachGroup", { clear = true }),
+             callback = function(event)
+                 local map = function(keys, func)
+                     vim.keymap.set("n", keys, func, { buffer = event.buf })
+                 end
+
+                 map("gd", vim.lsp.buf.definition)
+                 map("K", vim.lsp.buf.hover)
+                 map("<leader>vws", vim.lsp.buf.workspace_symbol)
+                 map("<leader>vd", vim.diagnostic.open_float)
+                 map("<leader>vca", vim.lsp.buf.code_action)
+                 map("<leader>vrr", vim.lsp.buf.references)
+                 map("<leader>vrn", vim.lsp.buf.rename)
+                 map("[d", vim.diagnostic.goto_next)
+                 map("]d", vim.diagnostic.goto_prev)
+             end
+         })
+
         local capabilities = require("blink.cmp").get_lsp_capabilities()
         local servers = {
             lua_ls = {

@@ -50,6 +50,7 @@ vim.diagnostic.config({
     },
     virtual_text = false,
 })
+
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = vim.api.nvim_create_augroup("HighlightYankGroup", { clear = true }),
     callback = function()
@@ -58,6 +59,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
             timeout = 40,
         })
     end,
+})
+
+vim.api.nvim_create_autocmd('TermOpen', {
+    group = vim.api.nvim_create_augroup('custom-term-open', { clear = true}),
+    callback = function()
+        vim.opt.number = false
+        vim.opt.relativenumber = false
+    end
 })
 
 vim.api.nvim_create_autocmd("BufWritePre", {

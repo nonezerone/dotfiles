@@ -52,5 +52,12 @@ vim.keymap.set("n", "<space>trn", function()
     vim.o.relativenumber = not vim.o.relativenumber
 end)
 
+vim.keymap.set("n", "<space>st", function()
+    vim.cmd.vnew()
+    vim.cmd.term()
+    vim.cmd.wincmd("J")
+    vim.api.nvim_win_set_height(0, 5)
+end)
+
 -- Source current file
 vim.keymap.set("n", "<space><space>", function() vim.cmd("so") end)
