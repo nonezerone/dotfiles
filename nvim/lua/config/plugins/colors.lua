@@ -1,9 +1,7 @@
 return {
-
     {
         "rebelot/kanagawa.nvim",
         priority = 1000,
-
         config = function()
             require("kanagawa").setup({
                 commentStyle = { italic = false },
@@ -11,6 +9,7 @@ return {
                 keywordStyle = { italic = false },
                 statementStyle = { bold = true },
                 theme = "dragon",
+                transparent = false,
             })
         end,
 
@@ -18,7 +17,6 @@ return {
             vim.cmd.colorscheme("kanagawa-dragon")
         end,
     },
-
     {
         "rose-pine/neovim",
         name = "rose-pine",
@@ -29,6 +27,5 @@ return {
                 },
             })
         end,
-
-    }
+    },
 }

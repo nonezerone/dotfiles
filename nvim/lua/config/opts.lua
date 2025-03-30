@@ -1,3 +1,11 @@
+-- Set leader key
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
+vim.g.netrw_browse_split = 0
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 25
+
 vim.opt.guicursor = ""
 
 vim.opt.nu = true
@@ -30,9 +38,6 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80"
 
-vim.g.netrw_browse_split = 0
-vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 25
 
 vim.diagnostic.config({
     float = {
@@ -45,7 +50,6 @@ vim.diagnostic.config({
     },
     virtual_text = false,
 })
-
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = vim.api.nvim_create_augroup("HighlightYankGroup", { clear = true }),
     callback = function()
@@ -61,3 +65,4 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*",
     command = [[%s/\s\+$//e]],
 })
+

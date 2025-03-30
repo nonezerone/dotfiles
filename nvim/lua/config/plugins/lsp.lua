@@ -5,32 +5,19 @@ return {
         "williamboman/mason-lspconfig.nvim",
         "WhoIsSethDaniel/mason-tool-installer.nvim",
         { "j-hui/fidget.nvim", opts = {} },
-        { 'folke/neodev.nvim', opts = {} },
+        {
+            "folke/lazydev.nvim",
+            ft = "lua",
+            opts = {
+                library = {
+                    { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+                },
+            },
+        },
     },
 
     config = function()
-        vim.api.nvim_create_autocmd("LspAttach", {
-            group = vim.api.nvim_create_augroup("LspAttachGroup", { clear = true }),
-            callback = function(event)
-                local map = function(keys, func)
-                    vim.keymap.set("n", keys, func, { buffer = event.buf })
-                end
-
-                map("gd", vim.lsp.buf.definition)
-                map("K", vim.lsp.buf.hover)
-                map("<leader>vws", vim.lsp.buf.workspace_symbol)
-                map("<leader>vd", vim.diagnostic.open_float)
-                map("<leader>vca", vim.lsp.buf.code_action)
-                map("<leader>vrr", vim.lsp.buf.references)
-                map("<leader>vrn", vim.lsp.buf.rename)
-                map("[d", vim.diagnostic.goto_next)
-                map("]d", vim.diagnostic.goto_prev)
-            end
-        })
-
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
-        capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
-
+        local capabilities = require("blink.cmp").get_lsp_capabilities()
         local servers = {
             lua_ls = {
                 settings = {
@@ -70,9 +57,9 @@ return {
         require("mason").setup()
 
         local ensure_installed = vim.tbl_keys(servers or {})
-        vim.list_extend(ensure_installed, {
-            'stylua', -- Used to format Lua code
-        })
+        -- vim.list_extend(ensure_installed, {
+        --     'stylua', -- Used to format Lua code
+        -- })
         require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
         require('mason-lspconfig').setup {

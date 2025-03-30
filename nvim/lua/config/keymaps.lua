@@ -1,9 +1,5 @@
--- Set leader key
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 -- File explore
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<space>pv", vim.cmd.Ex)
 
 -- Move selected line upwards & downwards
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -21,12 +17,12 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 -- Paste without wasting pase buffer
-vim.keymap.set("x", "<leader>p", [["_dP]])
+vim.keymap.set("x", "<space>p", [["_dP]])
 
 -- Yanking
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+Y]])
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+vim.keymap.set({ "n", "v" }, "<space>y", [["+y]])
+vim.keymap.set("n", "<space>Y", [["+Y]])
+vim.keymap.set({ "n", "v" }, "<space>d", [["_d]])
 
 -- Blasphemy
 vim.keymap.set("i", "<C-c>", "<Esc>")
@@ -38,23 +34,23 @@ vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
 -- LSP autoformat
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+vim.keymap.set("n", "<space>f", vim.lsp.buf.format)
 
--- Something locations
--- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
--- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
--- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
--- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+-- Move through quickfix entries
+vim.keymap.set("n", "<M-j>", "<cmd>cnext<CR>zz")
+vim.keymap.set("n", "<M-k>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<space>k", "<cmd>lnext<CR>zz")
+vim.keymap.set("n", "<space>j", "<cmd>lprev<CR>zz")
 
 -- Activate replace pattern command
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<space>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- Grant executable permission to current file
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+vim.keymap.set("n", "<space>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
-vim.keymap.set("n", "<leader>trn", function()
+vim.keymap.set("n", "<space>trn", function()
     vim.o.relativenumber = not vim.o.relativenumber
 end)
 
 -- Source current file
-vim.keymap.set("n", "<leader><leader>", function() vim.cmd("so") end)
+vim.keymap.set("n", "<space><space>", function() vim.cmd("so") end)

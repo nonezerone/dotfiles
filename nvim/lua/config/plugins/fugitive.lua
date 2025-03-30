@@ -2,7 +2,7 @@ return {
     "tpope/vim-fugitive",
 
     config = function()
-        vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
+        vim.keymap.set("n", "<space>gs", vim.cmd.Git)
 
         local GitContext_Fugitive = vim.api.nvim_create_augroup("GitContext_Fugitive", {})
         local autocmd = vim.api.nvim_create_autocmd
@@ -17,17 +17,17 @@ return {
 
                 local bufnr = vim.api.nvim_get_current_buf()
                 local opts = { buffer = bufnr, remap = false }
-                vim.keymap.set("n", "<leader>p", function()
+                vim.keymap.set("n", "<space>p", function()
                     vim.cmd.Git("push")
                 end, opts)
 
                 -- rebase always
-                vim.keymap.set("n", "<leader>P", function()
+                vim.keymap.set("n", "<space>P", function()
                     vim.cmd.Git({ "pull", "--rebase" })
                 end, opts)
 
                 -- NOTE: Set branch to push if it was not set for REASONS
-                vim.keymap.set("n", "<leader>t", ":Git push -u origin ", opts);
+                vim.keymap.set("n", "<space>t", ":Git push -u origin ", opts);
             end,
         })
 

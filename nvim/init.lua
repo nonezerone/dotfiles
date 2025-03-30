@@ -1,1 +1,1 @@
-require("nonezerone")
+require("config.lazy")
