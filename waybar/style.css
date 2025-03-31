@@ -2,7 +2,7 @@
     /* `otf-font-awesome` and SpaceMono Nerd Font are required to be installed for icons */
     /* font-family: "Fira Sans Semibold", FontAwesome, Roboto, Helvetica, Arial, sans-serif; */
     font-family: "ComicCode Ligatures Regular", ComicCode, FontAwesome, Roboto, Helvetica, sans-serif;
-    font-size: 15px;
+    font-size: 14px;
     transition: background-color .3s ease-out;
 }
 
