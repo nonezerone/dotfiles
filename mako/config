@@ -1,9 +1,9 @@
 # Mako configuration file
 # Default font
-font=monospace 10
+font=monospace 12
 # Default styling
 border-size=2
-border-radius=5
+border-radius=0
 padding=8
 margin=8
 width=300
@@ -58,9 +58,9 @@ height=100
 # progress-color=over #98c379
 
 ### CUSTOM PASTEL THEME (ACTIVE) ###
-background-color=#0f191c
-text-color=#d0d0d0
-border-color=#a9c1e2
+background-color=#181616
+text-color=#c8c093
+border-color=#c4b28a
 progress-color=over #9ae2d5
 
 # Behavior settings

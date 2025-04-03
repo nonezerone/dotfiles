@@ -31,8 +31,6 @@ return {
                  map("<leader>vca", vim.lsp.buf.code_action)
                  map("<leader>vrr", vim.lsp.buf.references)
                  map("<leader>vrn", vim.lsp.buf.rename)
-                 map("[d", vim.diagnostic.goto_next)
-                 map("]d", vim.diagnostic.goto_prev)
              end
          })
 
