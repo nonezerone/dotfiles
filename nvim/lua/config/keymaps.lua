@@ -59,5 +59,8 @@ vim.keymap.set("n", "<space>st", function()
     vim.api.nvim_win_set_height(0, 5)
 end)
 
+-- Escape from term
+vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
+
 -- Source current file
 vim.keymap.set("n", "<space><space>", function() vim.cmd("so") end)
