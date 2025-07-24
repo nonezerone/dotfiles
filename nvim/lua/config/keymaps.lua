@@ -49,14 +49,14 @@ vim.keymap.set("n", "<space>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><L
 vim.keymap.set("n", "<space>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 vim.keymap.set("n", "<space>trn", function()
-    vim.o.relativenumber = not vim.o.relativenumber
+  vim.o.relativenumber = not vim.o.relativenumber
 end)
 
 vim.keymap.set("n", "<space>st", function()
-    vim.cmd.vnew()
-    vim.cmd.term()
-    vim.cmd.wincmd("J")
-    vim.api.nvim_win_set_height(0, 5)
+  vim.cmd.vnew()
+  vim.cmd.term()
+  vim.cmd.wincmd("J")
+  vim.api.nvim_win_set_height(0, 5)
 end)
 
 -- Escape from term

@@ -1,37 +1,37 @@
 return {
-    "tpope/vim-fugitive",
+  "tpope/vim-fugitive",
 
-    config = function()
-        vim.keymap.set("n", "<space>gs", vim.cmd.Git)
+  config = function()
+    vim.keymap.set("n", "<space>gs", vim.cmd.Git)
 
-        local GitContext_Fugitive = vim.api.nvim_create_augroup("GitContext_Fugitive", {})
-        local autocmd = vim.api.nvim_create_autocmd
+    local GitContext_Fugitive = vim.api.nvim_create_augroup("GitContext_Fugitive", {})
+    local autocmd = vim.api.nvim_create_autocmd
 
-        autocmd("BufWinEnter", {
-            group = GitContext_Fugitive,
-            pattern = "*",
-            callback = function()
-                if vim.bo.ft ~= "fugitive" then
-                    return
-                end
+    autocmd("BufWinEnter", {
+      group = GitContext_Fugitive,
+      pattern = "*",
+      callback = function()
+        if vim.bo.ft ~= "fugitive" then
+          return
+        end
 
-                local bufnr = vim.api.nvim_get_current_buf()
-                local opts = { buffer = bufnr, remap = false }
-                vim.keymap.set("n", "<space>p", function()
-                    vim.cmd.Git("push")
-                end, opts)
+        local bufnr = vim.api.nvim_get_current_buf()
+        local opts = { buffer = bufnr, remap = false }
+        vim.keymap.set("n", "<space>p", function()
+          vim.cmd.Git("push")
+        end, opts)
 
-                -- rebase always
-                vim.keymap.set("n", "<space>P", function()
-                    vim.cmd.Git({ "pull", "--rebase" })
-                end, opts)
+        -- rebase always
+        vim.keymap.set("n", "<space>P", function()
+          vim.cmd.Git({ "pull", "--rebase" })
+        end, opts)
 
-                -- NOTE: Set branch to push if it was not set for REASONS
-                vim.keymap.set("n", "<space>t", ":Git push -u origin ", opts);
-            end,
-        })
+        -- NOTE: Set branch to push if it was not set for REASONS
+        vim.keymap.set("n", "<space>t", ":Git push -u origin ", opts);
+      end,
+    })
 
-        vim.keymap.set("n", "gu", "<cmd>diffget //2<CR>")
-        vim.keymap.set("n", "gh", "<cmd>diffget //3<CR>")
-    end
+    vim.keymap.set("n", "gu", "<cmd>diffget //2<CR>")
+    vim.keymap.set("n", "gh", "<cmd>diffget //3<CR>")
+  end
 }
