@@ -2,8 +2,6 @@
 
 # Prerequisite: mpv installed!
 
-require 'net/http'
-require 'uri'
 require 'thread'
 
 Thread.abort_on_exception = true
