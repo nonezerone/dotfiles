@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# Prerequisite: mpv installed!
+# Prerequisite: FFmpeg installed!
 
 require 'thread'
 
@@ -17,14 +17,14 @@ CDN = 'https://broadcastify.cdnstream1.com'.freeze
 # 26933 -> Buffalo Police, Fire and EMS
 IDS = [1189, 6007, 26933]
 
-def run_noise
+begin
   threads = {}
 
   IDS.each do |id|
-    threads[id] = Thread.new { system("mpv #{CDN}/#{id}") }
+    threads[id] = Thread.new { system("ffplay -vn -nodisp -loglevel info #{CDN}/#{id}") }
   end
 
   threads.each { |_key, value| value.join }
+rescue Interrupt
+  puts "Shutting down all broadcasts!\nExiting now!"
 end
-
-run_noise
