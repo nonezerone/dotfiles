@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+# Prerequisite: mpv installed!
+
+require 'net/http'
+require 'uri'
+require 'thread'
+
+Thread.abort_on_exception = true
+
+# URI of CDN
+CDN = 'https://broadcastify.cdnstream1.com'.freeze
+
+# ID's of Police or Fire Dept. public feeds
+# Check list and populate this array to use other
+# feeds here (https://www.broadcastify.com/listen/top)
+# 1189  -> NYPD Bronx/Manhattan Transit
+# 6007  -> Jefferson County Police, Fire and EMS
+# 26933 -> Buffalo Police, Fire and EMS
+IDS = [1189, 6007, 26933]
+
+def run_noise
+  threads = {}
+
+  IDS.each do |id|
+    threads[id] = Thread.new { system("mpv #{CDN}/#{id}") }
+  end
+
+  threads.each { |_key, value| value.join }
+end
+
+run_noise
