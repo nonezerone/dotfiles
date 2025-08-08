@@ -1,9 +1,6 @@
 #!/usr/bin/env ruby
 
 # Prerequisite: FFmpeg installed!
-
-require 'thread'
-
 Thread.abort_on_exception = true
 
 # URI of CDN
@@ -20,6 +17,6 @@ FEED_IDS = [1189, 6007, 26933]
 begin
   FEED_IDS.map { |id| Thread.new { system("ffplay -vn -nodisp #{URL}/#{id}") } }.each(&:join)
 rescue Interrupt
-  puts
-  puts "Shutting down all broadcasts!"
+  3.times { puts }
+  puts 'Shutting down all broadcasts!'
 end
