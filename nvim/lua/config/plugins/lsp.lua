@@ -54,6 +54,7 @@ return {
           },
         },
       },
+      rust_analyzer = {},
       ts_ls = {},
       gopls = {},
       pylsp = {},
@@ -83,7 +84,8 @@ return {
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
     for server, settings in pairs(opts.servers) do
-      require("lspconfig")[server].setup { settings = settings["settings"] or {}, capabilities = capabilities }
+      vim.lsp.config(server, { settings = settings["settings"] or {}, capabilities = capabilities })
+      vim.lsp.enable(server)
     end
   end,
 }
