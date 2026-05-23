@@ -1,5 +1,5 @@
 -- File explore
-vim.keymap.set("n", "<space>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<space>pv", vim.cmd.Sex)
 
 -- Move selected line upwards & downwards
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
