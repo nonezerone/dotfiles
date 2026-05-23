@@ -14,3 +14,8 @@ vim.api.nvim_create_user_command("PackUpdate", function(opts)
     vim.pack.update()
   end
 end, { nargs = "*", desc = "Update chosen or all plugins" })
+
+vim.keymap.set("n", "<leader>u", function()
+    vim.cmd.packadd("nvim.undotree")
+    require("undotree").open()
+end, { desc = "Toggle Builtin Undotree" })
