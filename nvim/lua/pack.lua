@@ -15,7 +15,6 @@ require("vague").setup({
   italic = false
 })
 
--- mini files ----
 local MiniFiles = require("mini.files")
 MiniFiles.setup({
   mappings = {
@@ -32,7 +31,7 @@ vim.keymap.set("n", "<leader>-", function()
   MiniFiles.reveal_cwd()
 end, { desc = "Toggle into currently opened file" })
 
----- mini notify ----
+-- mini notify
 -- require("mini.notify").setup({
 --     -- only show messages
 --     content = {
@@ -44,12 +43,12 @@ end, { desc = "Toggle into currently opened file" })
 
 require("mini.pairs").setup()
 
---- mini cmdline completion ---
+-- mini cmdline completion
 require("mini.cmdline").setup({
   autocorrect = { enable = false }
 })
 
---- mini surround ---
+-- mini surround
 require("mini.surround").setup()
 -- Default Keymaps
 -- | `sa` | Add surrounding or Direct with 'saiw' |
@@ -61,7 +60,7 @@ require("mini.surround").setup()
 -- | `sn` | Update n_lines |
 -- | `l` / `n` | as suffix for prev/next |
 
---- mini picker ---
+-- mini picker
 local MiniPick = require("mini.pick")
 local MiniExtra = require("mini.extra")
 MiniPick.setup()
@@ -75,23 +74,23 @@ vim.keymap.set("n", "<leader>vh", function() MiniPick.builtin.help() end, { desc
 vim.keymap.set("n", "<leader>xx", function() MiniExtra.pickers.diagnostic() end, { desc = "Mini Picker Diagnostics" })
 vim.keymap.set("n", "<leader>pk", function() MiniExtra.pickers.keymaps() end, { desc = 'Search keymaps' })
 
---- mini completions ---
+-- mini completions
 require("mini.completion").setup({
   lsp_completion = {
     auto_setup = true,
   }
 })
 
---- mini snippets ---
+-- mini snippets
 local MiniSnippets = require("mini.snippets")
 MiniSnippets.setup({
   snippets = {
-    MiniSnippets.gen_loader.from_lang(), -- loads friendly-snippets
+    MiniSnippets.gen_loader.from_lang(),
   },
 })
 MiniSnippets.start_lsp_server({ match = false })
 
---- mini diff and fugitive ---
+-- mini diff and fugitive
 local MiniDiff = require("mini.diff")
 MiniDiff.setup({
   source = MiniDiff.gen_source.git({ index = false }),
