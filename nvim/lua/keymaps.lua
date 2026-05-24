@@ -50,15 +50,21 @@ vim.keymap.set("n", "<space>trn", function()
   vim.o.relativenumber = not vim.o.relativenumber
 end)
 
+-- Terminal
 vim.keymap.set("n", "<space>st", function()
-  vim.cmd.vnew()
+  vim.cmd.new()
   vim.cmd.term()
-  vim.cmd.wincmd("J")
-  vim.api.nvim_win_set_height(0, 5)
+  vim.cmd.wincmd("H")
 end)
 
 -- Escape from term
 vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
+
+-- Nvim-native undotree
+vim.keymap.set("n", "<leader>u", function()
+    vim.cmd.packadd("nvim.undotree")
+    require("undotree").open()
+end, { desc = "Toggle Builtin Undotree" })
 
 -- Source current file
 vim.keymap.set("n", "<space><space>", function() vim.cmd("so") end)
