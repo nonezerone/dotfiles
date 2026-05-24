@@ -1,5 +1,5 @@
 -- File explore
-vim.keymap.set("n", "<space>pv", vim.cmd.Sex)
+vim.keymap.set("n", "<space>pv", vim.cmd.Ex)
 
 -- Move selected line upwards & downwards
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -46,11 +46,12 @@ vim.keymap.set("n", "<space>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><L
 -- Grant executable permission to current file
 vim.keymap.set("n", "<space>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
+-- Toggle relative lines
 vim.keymap.set("n", "<space>trn", function()
   vim.o.relativenumber = not vim.o.relativenumber
 end)
 
--- Terminal
+-- Open terminal in new window
 vim.keymap.set("n", "<space>st", function()
   vim.cmd.new()
   vim.cmd.term()
