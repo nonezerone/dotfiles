@@ -23,6 +23,9 @@ vim.o.scrolloff = 8
 vim.o.signcolumn = "yes"
 vim.o.updatetime = 50
 vim.o.colorcolumn = "80"
+vim.o.winborder = "single"
+
+vim.opt.grepprg = "rg -H --no-heading --vimgrep $* ."
 
 vim.opt.isfname:append("@-@")
 vim.opt.clipboard:append("unnamedplus")

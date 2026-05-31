@@ -28,7 +28,7 @@ vim.keymap.set({ "n", "v" }, "<space>y", [["+y]])
 vim.keymap.set("n", "<space>Y", [["+Y]])
 vim.keymap.set({ "n", "v" }, "<space>d", [["_d]])
 
--- Blasphemy
+-- Cool
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
 -- Noquit
@@ -46,26 +46,34 @@ vim.keymap.set("n", "<space>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><L
 -- Grant executable permission to current file
 vim.keymap.set("n", "<space>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
--- Toggle relative lines
+-- Toggle relvative numbers
 vim.keymap.set("n", "<space>trn", function()
   vim.o.relativenumber = not vim.o.relativenumber
 end)
 
--- Open terminal in new window
+-- Split window with terminal
 vim.keymap.set("n", "<space>st", function()
-  vim.cmd.new()
+  vim.cmd.vnew()
   vim.cmd.term()
-  vim.cmd.wincmd("H")
+  vim.cmd.wincmd("J")
+  vim.api.nvim_win_set_height(0, 5)
 end)
 
 -- Escape from term
 vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
+
+-- Source current file
+vim.keymap.set("n", "<space><space>", function() vim.cmd("so") end)
+
+-- Grep
+vim.keymap.set("n", "<leader>gg", ":copen | :silent :grep ")
+
+-- Buffer list navigation
+vim.keymap.set("n", "]b", ":bnext<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "[b", ":bprev<CR>", { noremap = true, silent = true })
 
 -- Nvim-native undotree
 vim.keymap.set("n", "<leader>u", function()
     vim.cmd.packadd("nvim.undotree")
     require("undotree").open()
 end, { desc = "Toggle Builtin Undotree" })
-
--- Source current file
-vim.keymap.set("n", "<space><space>", function() vim.cmd("so") end)

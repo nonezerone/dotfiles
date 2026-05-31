@@ -44,7 +44,7 @@ MiniPick.setup()
 
 -- keymaps
 vim.keymap.set("n", "<C-p>", function() MiniPick.builtin.files() end, { desc = "File Picker" })
-vim.keymap.set("n", "<leader>ps", function() MiniPick.builtin.grep_live() end,{ desc = "Grep" })
+vim.keymap.set("n", "<leader>ps", function() MiniPick.builtin.grep({ pattern = vim.fn.input("Grep > ") }) end,{ desc = "Grep" })
 vim.keymap.set("n", "<leader>pws", function() MiniPick.builtin.grep({ pattern = vim.fn.expand("<cword>") }) end,{ desc = "Grep word on cursor" })
 vim.keymap.set("n", "<leader>vh", function() MiniPick.builtin.help() end, { desc = "Search help" })
 
